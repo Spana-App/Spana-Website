@@ -27,9 +27,19 @@ const About = () => {
       initials: "OP",
     },
     {
+      name: "Emson Moyo",
+      position: "Investor & Business Development",
+      initials: "EM",
+    },
+    {
       name: "Nhlakanipho Radebe",
       position: "Frontend CMS Developer",
       initials: "NR",
+    },
+    {
+      name: "Hanley Nyathi",
+      position: "Investor & Business Development",
+      initials: "HN",
     },
     {
       name: "Xolile Nxiweni",
