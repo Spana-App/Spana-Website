@@ -1,0 +1,281 @@
+.download-app-container {
+  min-height: 100vh;
+  padding: var(--layout-padding);
+  background-color: var(--Background);
+  position: relative;
+  overflow: hidden;
+}
+
+.download-app-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 40px 0;
+}
+
+.download-app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.download-app-header h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--Text);
+  letter-spacing: -0.02em;
+  margin-bottom: 15px;
+}
+
+.download-app-header .highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.download-app-header .highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: var(--Accent);
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.download-app-header p {
+  font-size: 1.1rem;
+  color: var(--Secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.download-app-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.download-app-text h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--Text);
+  margin-bottom: 15px;
+}
+
+.download-app-text ul {
+  margin: 0 0 25px 18px;
+  color: var(--Secondary);
+  line-height: 1.7;
+}
+
+.download-app-text li {
+  margin-bottom: 6px;
+}
+
+.store-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.store-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid rgba(15, 29, 24, 0.1);
+  background-color: white;
+  color: var(--Text);
+  min-width: 210px;
+  box-shadow: 0 4px 12px rgba(44, 75, 95, 0.08);
+  transition: all var(--transition-speed);
+}
+
+.store-button.ios {
+  background: #000;
+  color: #fff;
+}
+
+.store-button.android {
+  background: #1e8e3e;
+  color: #fff;
+}
+
+.store-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(44, 75, 95, 0.18);
+}
+
+.store-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.store-label {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+.store-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.download-app-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 260px;
+  height: 520px;
+  border-radius: 32px;
+  padding: 14px;
+  background: linear-gradient(160deg, #111827, #1f2937);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--Text);
+}
+
+.phone-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phone-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--Secondary);
+}
+
+.phone-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--Text);
+}
+
+.phone-list {
+  margin-left: 16px;
+  margin-top: 4px;
+  color: var(--Secondary);
+  font-size: 0.85rem;
+}
+
+/* Reuse global bubbles styles */
+.bubbles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  opacity: 0.08;
+  transition: transform 3s ease-in-out;
+}
+
+.bubble-1 {
+  top: 8%;
+  left: 12%;
+  width: 120px;
+  height: 120px;
+}
+
+.bubble-2 {
+  top: 65%;
+  left: 6%;
+  width: 80px;
+  height: 80px;
+}
+
+.bubble-3 {
+  top: 20%;
+  right: 12%;
+  width: 90px;
+  height: 90px;
+}
+
+.bubble-4 {
+  bottom: 10%;
+  right: 6%;
+  width: 130px;
+  height: 130px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .download-app-content {
+    grid-template-columns: 1fr;
+  }
+
+  .download-app-visual {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .download-app-wrapper {
+    padding: 30px 0;
+  }
+
+  .store-buttons {
+    flex-direction: column;
+  }
+
+  .download-app-visual {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .download-app-wrapper {
+    padding: 20px 0;
+  }
+
+  .download-app-header h1 {
+    font-size: 2rem;
+  }
+
+  .phone-mockup {
+    width: 220px;
+    height: 460px;
+  }
+}
+

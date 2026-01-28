@@ -1,0 +1,189 @@
+.howitworks-container {
+  min-height: 100vh;
+  padding: var(--layout-padding);
+  background-color: var(--Background);
+  position: relative;
+  overflow: hidden;
+}
+
+.howitworks-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 40px 0 60px;
+}
+
+.howitworks-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.howitworks-header h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--Text);
+  letter-spacing: -0.02em;
+  margin-bottom: 15px;
+}
+
+.howitworks-header .highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.howitworks-header .highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: var(--Accent);
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.howitworks-header p {
+  max-width: 700px;
+  margin: 15px auto 0;
+  color: var(--Secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.howitworks-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 32px;
+}
+
+.howitworks-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.howitworks-tab {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 75, 95, 0.15);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--Secondary);
+  transition: all var(--transition-speed);
+}
+
+.howitworks-tab.active {
+  background: var(--Primary);
+  color: #fff;
+  border-color: var(--Primary);
+}
+
+.howitworks-tab:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(44, 75, 95, 0.1);
+}
+
+.howitworks-detail {
+  min-height: 260px;
+}
+
+.howitworks-card {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 24px 24px 20px;
+}
+
+.howitworks-card h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--Text);
+  margin-bottom: 10px;
+}
+
+.howitworks-summary {
+  font-size: 0.96rem;
+  color: var(--Secondary);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.howitworks-examples {
+  margin-bottom: 16px;
+}
+
+.howitworks-examples h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--Text);
+}
+
+.howitworks-examples ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.92rem;
+  color: var(--Secondary);
+}
+
+.howitworks-steps h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--Text);
+}
+
+.howitworks-steps ol {
+  padding-left: 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.93rem;
+  color: var(--Secondary);
+}
+
+.howitworks-safety {
+  margin-top: 18px;
+  border-top: 1px solid rgba(44, 75, 95, 0.08);
+  padding-top: 14px;
+}
+
+.howitworks-safety h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--Text);
+}
+
+.howitworks-safety ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.93rem;
+  color: var(--Secondary);
+}
+
+@media (max-width: 768px) {
+  .howitworks-content-wrapper {
+    padding-top: 30px;
+  }
+
+  .howitworks-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .howitworks-layout {
+    grid-template-columns: 1fr;
+  }
+}
+

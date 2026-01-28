@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Smooch+Sans:wght@100..900&display=swap');
+
+:root {
+  --Primary: #2C4B5F;
+  --Background: #F3F8F5;
+  --Text: #0F1D18;
+  --Accent: #3E72A8;
+  --Secondary: #5E7A94;
+  --font-size-links: .9em;
+  --font-size-text: 1em;
+  --footer-font-size-text: .7em;
+  --layout-padding: 10px 10%;
+  --transition-speed: 0.3s;
+  --border-radius: 12px;
+  --box-shadow: 0 10px 30px rgba(44, 75, 95, 0.1);
+  --accent-gradient: linear-gradient(135deg, var(--Accent), var(--Primary));
+  --accent-gradient-2: linear-gradient(45deg, var(--Primary), var(--Accent));
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: var(--Background);
+  color: var(--Text);
+}
+
+::selection 
+{
+  background: var(--Accent);
+  color: var(--Background);
+}
+
+::-webkit-scrollbar 
+{
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb 
+{
+  background: var(--Accent);
+}
+
+.scrollUpButton 
+{
+
+  background-color: var(--Accent);
+  color: var(--Background);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: all .3s ease-in-out;
+}
