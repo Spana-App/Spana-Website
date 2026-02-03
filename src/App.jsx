@@ -12,6 +12,7 @@ import BrowseServices from './components/Sections/BrowseServices/BrowseServices'
 import Providers from './components/Sections/Providers/Providers'
 import ServiceDetail from './components/Sections/ServiceDetail/ServiceDetail'
 import DownloadApp from './components/Sections/DownloadApp/DownloadApp'
+import Careers from './components/Sections/Careers/Careers'
 import { ArrowUp } from 'lucide-react'
 
 // CUSTOM HOOK FOR SCROLL REVEAL ANIMATION EFFECT
@@ -192,6 +193,9 @@ const AppContent = () => {
 
           {/* Download App Page */}
           <Route path="/download-app" element={<DownloadApp />} />
+
+          {/* Careers / Application Page */}
+          <Route path="/careers" element={<Careers />} />
         </Routes>
       </main>
 

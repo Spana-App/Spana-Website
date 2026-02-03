@@ -45,6 +45,8 @@ const Navbar = () => {
       setActiveLink('Providers')
     } else if (path === '/download-app') {
       setActiveLink('Download')
+    } else if (path === '/careers') {
+      setActiveLink('Careers')
     } else if (path.startsWith('/services/')) {
       setActiveLink('Services')
     } else if (path === '/') {
@@ -343,6 +345,12 @@ const Navbar = () => {
               </Link>
             </li>
 
+            <li className={`navbar-link ${activeLink === "Careers" ? "active" : ""}`}>
+              <Link to="/careers" onClick={() => closeMenu("Careers")}>
+                <span className="link-text">Careers</span>
+              </Link>
+            </li>
+
           {/* <li className={`navbar-link ${activeLink === "Download" ? "active" : ""}`}>
             <Link to="/download-app" onClick={() => closeMenu("Download")}>
               <span className="link-text">Download App</span>
@@ -487,6 +495,30 @@ const Navbar = () => {
                   </svg>
                 </span>
                 <span>Browse Services</span>
+              </Link>
+            </li>
+
+            <li className={`mobile-link ${activeLink === "Careers" ? "active" : ""}`}>
+              <Link to="/careers" onClick={() => closeMenu("Careers")}>
+                <span className="link-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <path d="M20 8v6"></path>
+                    <path d="M23 11h-6"></path>
+                  </svg>
+                </span>
+                <span>Careers</span>
               </Link>
             </li>
 
