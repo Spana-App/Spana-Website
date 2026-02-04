@@ -325,7 +325,7 @@ const Connect = () => {
                   </div>
                   <div className="info-content">
                     <h3>Email</h3>
-                    <p>support@spana.app</p>
+                    <p>xoli@spana.co.za</p>
                   </div>
                 </div>
 

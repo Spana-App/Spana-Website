@@ -322,7 +322,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:lungi@spana.co.za">
+                  <a href="mailto:xoli@spana.co.za">
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -339,14 +339,14 @@ const Footer = () => {
                         <polyline points="22,6 12,13 2,6"></polyline>
                       </svg>
                     </span>
-                    <span>support@spana.app</span>
+                    <span>xoli@spana.co.za</span>
                   </a>
                 </li>
               </ul>
 
               <div className="footer-hours">
                 <h4>Business Hours</h4>
-                <p>Monday - Friday: 08:00 - 17:00 (SAST)</p>
+                <p>Monday - Friday: 08:00 - 18:00 (SAST)</p>
                 <p>Weekend & public holidays: App support only</p>
               </div>
             </div>
