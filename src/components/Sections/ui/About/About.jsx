@@ -1,9 +1,17 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import "./About.css"
 
+const ABOUT_IMAGES = [
+  "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80", // plumber
+  "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80", // electrician
+  "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80", // gardener
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",    // cleaner
+]
+
 const About = () => {
+  const [aboutImage] = useState(() => ABOUT_IMAGES[Math.floor(Math.random() * ABOUT_IMAGES.length)])
   const headingRef = useRef(null)
   const contentRef = useRef(null)
   const imageRef = useRef(null)
@@ -192,7 +200,10 @@ const About = () => {
           </div>
 
           <div className="about-image-container" ref={imageRef}>
-            <div className="about-image">
+            <div 
+              className="about-image"
+              style={{ backgroundImage: `url(${aboutImage})` }}
+            >
               <div className="overlay"></div>
             </div>
             <div className="image-accent"></div>

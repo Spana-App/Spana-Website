@@ -1,11 +1,31 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import spanaLogo from "../../../assets/Attached_image.png"
+import ComingSoonModal from "../ComingSoonModal/ComingSoonModal"
 import "./Footer.css"
 
 const Footer = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [showComingSoon, setShowComingSoon] = useState(false)
+  const [modalVariant, setModalVariant] = useState("social")
   const aboutRef = useRef(null)
+
+  const handleSectionClick = (sectionId) => {
+    if (location.pathname !== "/") {
+      navigate(`/#${sectionId}`)
+    } else {
+      const el = document.getElementById(sectionId)
+      if (el) {
+        const navbarHeight = 80
+        const rect = el.getBoundingClientRect()
+        const offsetTop = rect.top + window.pageYOffset - navbarHeight
+        window.scrollTo({ top: offsetTop, behavior: "smooth" })
+      }
+    }
+  }
   const linksRef = useRef(null)
   const contactRef = useRef(null)
   const copyrightRef = useRef(null)
@@ -57,7 +77,7 @@ const Footer = () => {
               <h3>Subscribe to our newsletter</h3>
               <div className="newsletter-form">
                 <input type="email" placeholder="Your email address" />
-                <button>
+                <button type="button" onClick={() => { setModalVariant("newsletter"); setShowComingSoon(true) }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -82,7 +102,7 @@ const Footer = () => {
               <h3>Pages</h3>
               <ul className="footer-links">
                 <li>
-                  <a href="#Home">
+                  <a href="#Home" onClick={(e) => { e.preventDefault(); handleSectionClick("Home") }}>
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +123,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#About">
+                  <a href="#About" onClick={(e) => { e.preventDefault(); handleSectionClick("About") }}>
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +145,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#Services">
+                  <a href="#Services" onClick={(e) => { e.preventDefault(); handleSectionClick("Services") }}>
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +165,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#Connect">
+                  <a href="#Connect" onClick={(e) => { e.preventDefault(); handleSectionClick("Connect") }}>
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +185,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/careers">
+                  <Link to="/careers">
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +204,7 @@ const Footer = () => {
                       </svg>
                     </span>
                     <span>Careers</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -193,7 +213,7 @@ const Footer = () => {
               <h3>Follow Spana</h3>
               <ul className="footer-links">
                 <li>
-                  <a href="#" aria-label="Spana on Facebook">
+                  <button type="button" onClick={() => { setModalVariant("social"); setShowComingSoon(true) }} aria-label="Spana on Facebook" className="footer-link-button">
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -210,10 +230,10 @@ const Footer = () => {
                       </svg>
                     </span>
                     <span>Facebook</span>
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a href="#" aria-label="Spana on X">
+                  <button type="button" onClick={() => { setModalVariant("social"); setShowComingSoon(true) }} aria-label="Spana on X" className="footer-link-button">
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -230,10 +250,10 @@ const Footer = () => {
                       </svg>
                     </span>
                     <span>Twitter</span>
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a href="#" aria-label="Spana on Instagram">
+                  <button type="button" onClick={() => { setModalVariant("social"); setShowComingSoon(true) }} aria-label="Spana on Instagram" className="footer-link-button">
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -252,10 +272,10 @@ const Footer = () => {
                       </svg>
                     </span>
                     <span>Instagram</span>
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a href="#" aria-label="Spana on LinkedIn">
+                  <button type="button" onClick={() => { setModalVariant("social"); setShowComingSoon(true) }} aria-label="Spana on LinkedIn" className="footer-link-button">
                     <span className="link-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +294,7 @@ const Footer = () => {
                       </svg>
                     </span>
                     <span>LinkedIn</span>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -358,12 +378,13 @@ const Footer = () => {
             <p>Copyright &copy; {new Date().getFullYear()} Spana. All rights reserved.</p>
           </div>
           <div className="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Sitemap</a>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms-of-service">Terms of Service</Link>
+            <Link to="/sitemap">Sitemap</Link>
           </div>
         </div>
       </div>
+      <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} variant={modalVariant} />
     </footer>
   )
 }

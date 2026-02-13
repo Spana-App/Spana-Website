@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import API_BASE_URL from "../../../config/api"
+import Breadcrumbs from "../../ui/Breadcrumbs/Breadcrumbs"
 import ProviderCard from "../../ui/ProviderCard/ProviderCard"
 import "./Providers.css"
 
@@ -23,11 +24,13 @@ const Providers = () => {
         const params = new URLSearchParams()
         if (selectedCategory) params.append('category', selectedCategory)
         
-        const response = await fetch(`${API_BASE_URL}/users/providers?${params}`)
+        const response = await fetch(`${API_BASE_URL}/users/providers/all?${params}`)
         if (!response.ok) throw new Error('Failed to fetch providers')
         const data = await response.json()
-        setProviders(data.providers || [])
-        setFilteredProviders(data.providers || [])
+        // Backend returns array directly, not { providers: [...] }
+        const providerList = Array.isArray(data) ? data : (data.providers || [])
+        setProviders(providerList)
+        setFilteredProviders(providerList)
       } catch (err) {
         console.error('Error fetching providers:', err)
         setError(err.message)
@@ -92,6 +95,7 @@ const Providers = () => {
       </div>
 
       <div className="providers-wrapper">
+        <Breadcrumbs items={[{ label: "Home", path: "/" }, { label: "Providers" }]} />
         <div className="providers-header" ref={headingRef}>
           <h1>
             Provider <span className="highlight">Directory</span>

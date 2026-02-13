@@ -9,7 +9,8 @@
   --font-size-links: .9em;
   --font-size-text: 1em;
   --footer-font-size-text: .7em;
-  --layout-padding: 10px 10%;
+  --navbar-height: 80px;
+  --layout-padding: 24px 10% 24px;
   --transition-speed: 0.3s;
   --border-radius: 12px;
   --box-shadow: 0 10px 30px rgba(44, 75, 95, 0.1);
@@ -17,6 +18,30 @@
   --accent-gradient-2: linear-gradient(45deg, var(--Primary), var(--Accent));
   --error-color: #e74c3c;
   --success-color: #2ecc71;
+}
+
+/* Responsive layout padding */
+@media (max-width: 768px) {
+  :root {
+    --layout-padding: 20px 5% 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --layout-padding: 16px 16px 16px;
+  }
+}
+
+/* App layout - main content clears fixed navbar */
+.app-container main {
+  min-height: 100vh;
+  padding-top: var(--navbar-height);
+}
+
+/* Scroll anchor offset for fixed navbar */
+section[id] {
+  scroll-margin-top: var(--navbar-height);
 }
 
 html, body, #root {
@@ -54,9 +79,7 @@ body {
   background: var(--Accent);
 }
 
-.scrollUpButton 
-{
-
+.scrollUpButton {
   background-color: var(--Accent);
   color: var(--Background);
   border: none;
@@ -64,4 +87,11 @@ body {
   width: 40px;
   height: 40px;
   transition: all .3s ease-in-out;
+}
+
+@media (max-width: 480px) {
+  .scrollUpButton {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
 }

@@ -388,6 +388,42 @@
   background-image: var(--accent-gradient);
 }
 
+/* Services loading/error/empty states */
+.services-loading,
+.services-error,
+.services-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.services-loading .loading-spinner,
+.services-error .loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(44, 75, 95, 0.1);
+  border-top-color: var(--Accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.services-error p,
+.services-empty p {
+  font-size: 1.1rem;
+  color: var(--Secondary);
+}
+
+.services-error-hint {
+  font-size: 0.9rem !important;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
 /* Services Grid */
 .services-grid {
   display: grid;

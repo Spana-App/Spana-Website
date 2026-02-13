@@ -1,0 +1,102 @@
+.terms-of-service .bubbles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.terms-of-service .bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  opacity: 0.08;
+}
+
+.terms-of-service .bubble-1 { top: 10%; left: 8%; width: 100px; height: 100px; }
+.terms-of-service .bubble-2 { top: 60%; right: 10%; width: 80px; height: 80px; }
+.terms-of-service .bubble-3 { bottom: 15%; left: 15%; width: 60px; height: 60px; }
+
+.terms-of-service {
+  min-height: 100vh;
+  padding: var(--layout-padding);
+  background-color: var(--Background);
+  position: relative;
+  overflow: hidden;
+}
+
+.terms-of-service .legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 40px 0 60px;
+}
+
+.terms-of-service .legal-header {
+  margin-bottom: 40px;
+}
+
+.terms-of-service .legal-header h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--Text);
+  margin-bottom: 8px;
+}
+
+.terms-of-service .legal-updated {
+  color: var(--Secondary);
+  font-size: 0.95rem;
+}
+
+.terms-of-service .legal-body section {
+  margin-bottom: 32px;
+}
+
+.terms-of-service .legal-body h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--Text);
+  margin-bottom: 12px;
+}
+
+.terms-of-service .legal-body p,
+.terms-of-service .legal-body li {
+  color: var(--Secondary);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.terms-of-service .legal-body ul {
+  margin: 12px 0 12px 20px;
+}
+
+.terms-of-service .legal-body a {
+  color: var(--Primary);
+  text-decoration: underline;
+}
+
+.terms-of-service .legal-body a:hover {
+  color: var(--Accent);
+}
+
+.terms-of-service .legal-footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(44, 75, 95, 0.15);
+}
+
+.terms-of-service .legal-footer-links a {
+  color: var(--Primary);
+  font-weight: 500;
+}
+
+.terms-of-service .legal-footer-links a:hover {
+  color: var(--Accent);
+}

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
+import Breadcrumbs from "../../ui/Breadcrumbs/Breadcrumbs"
 import "./HowItWorks.css"
 
 const howItWorksSections = [
@@ -78,6 +79,7 @@ const HowItWorks = () => {
       </div>
 
       <div className="howitworks-content-wrapper">
+        <Breadcrumbs items={[{ label: "Home", path: "/" }, { label: "How It Works" }]} />
         <header className="howitworks-header">
           <h1>
             How <span className="highlight">Spana</span> Works

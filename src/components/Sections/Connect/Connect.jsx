@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import API_BASE_URL from "../../../config/api"
+import ComingSoonModal from "../../ui/ComingSoonModal/ComingSoonModal"
 import "./Connect.css"
 
 const Connect = () => {
@@ -20,6 +21,7 @@ const Connect = () => {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
   const [openFaqId, setOpenFaqId] = useState(1)
+  const [showComingSoon, setShowComingSoon] = useState(false)
 
   useEffect(() => {
     // Simple animation on load
@@ -302,7 +304,7 @@ const Connect = () => {
                   </div>
                   <div className="info-content">
                     <h3>Phone</h3>
-                    <p>+27 10 234 5678</p>
+                    <p>+27 67 110 7268</p>
                   </div>
                 </div>
 
@@ -357,7 +359,7 @@ const Connect = () => {
               <div className="social-links">
                 <h3>Connect With Us</h3>
                 <div className="social-icons">
-                  <a href="#" className="social-icon">
+                  <button type="button" onClick={() => setShowComingSoon(true)} className="social-icon social-icon-button" aria-label="Facebook">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -371,8 +373,8 @@ const Connect = () => {
                     >
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                     </svg>
-                  </a>
-                  <a href="#" className="social-icon">
+                  </button>
+                  <button type="button" onClick={() => setShowComingSoon(true)} className="social-icon social-icon-button" aria-label="Twitter">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -386,8 +388,8 @@ const Connect = () => {
                     >
                       <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
                     </svg>
-                  </a>
-                  <a href="#" className="social-icon">
+                  </button>
+                  <button type="button" onClick={() => setShowComingSoon(true)} className="social-icon social-icon-button" aria-label="LinkedIn">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -403,8 +405,8 @@ const Connect = () => {
                       <rect x="2" y="9" width="4" height="12"></rect>
                       <circle cx="4" cy="4" r="2"></circle>
                     </svg>
-                  </a>
-                  <a href="#" className="social-icon">
+                  </button>
+                  <button type="button" onClick={() => setShowComingSoon(true)} className="social-icon social-icon-button" aria-label="Instagram">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -420,32 +422,20 @@ const Connect = () => {
                       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
 
             <div className="map-container">
-              <div className="map-placeholder">
-                <div className="map-overlay">
-                  <div className="map-pin">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="30"
-                      height="30"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              <iframe
+                title="Spana - Johannesburg, South Africa"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=28.02%2C-26.22%2C28.08%2C-26.18&layer=mapnik&marker=-26.2041%2C28.0473"
+                className="map-iframe"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
               <div className="map-caption">Our home base in Johannesburg, serving customers and providers nationwide.</div>
             </div>
           </div>
@@ -478,6 +468,7 @@ const Connect = () => {
           </div>
         </div>
       </div>
+      <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} variant="social" />
     </div>
   )
 }

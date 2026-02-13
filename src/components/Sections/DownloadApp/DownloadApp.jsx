@@ -1,8 +1,10 @@
+import { useState } from "react"
+import Breadcrumbs from "../../ui/Breadcrumbs/Breadcrumbs"
+import ComingSoonModal from "../../ui/ComingSoonModal/ComingSoonModal"
 import "./DownloadApp.css"
 
 const DownloadApp = () => {
-  const iosUrl = "https://apps.apple.com" // TODO: replace with real store link
-  const androidUrl = "https://play.google.com/store" // TODO: replace with real store link
+  const [showComingSoon, setShowComingSoon] = useState(false)
 
   return (
     <div className="download-app-container">
@@ -14,6 +16,7 @@ const DownloadApp = () => {
       </div>
 
       <div className="download-app-wrapper">
+        <Breadcrumbs items={[{ label: "Home", path: "/" }, { label: "Download App" }]} />
         <header className="download-app-header">
           <h1>
             Get the <span className="highlight">Spana</span> App
@@ -36,10 +39,9 @@ const DownloadApp = () => {
             </ul>
 
             <div className="store-buttons">
-              <a
-                href={iosUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(true)}
                 className="store-button ios"
               >
                 <div className="store-icon">
@@ -52,12 +54,11 @@ const DownloadApp = () => {
                   <span className="store-label">Download on the</span>
                   <span className="store-name">App Store</span>
                 </div>
-              </a>
+              </button>
 
-              <a
-                href={androidUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(true)}
                 className="store-button android"
               >
                 <div className="store-icon">
@@ -72,7 +73,7 @@ const DownloadApp = () => {
                   <span className="store-label">Get it on</span>
                   <span className="store-name">Google Play</span>
                 </div>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -94,6 +95,7 @@ const DownloadApp = () => {
           </div>
         </section>
       </div>
+      <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} />
     </div>
   )
 }

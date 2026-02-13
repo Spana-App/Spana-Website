@@ -12,6 +12,7 @@ const Partners = () => {
     {
       name: "Hanley Technologies",
       logo: "HT",
+      logoImage: hanleyLogo,
       url: "https://hanleytechnologies.com",
       description: "Software House - Bespoke Development"
     },
@@ -19,18 +20,21 @@ const Partners = () => {
     {
       name: "Hanley Technologies",
       logo: "HT",
+      logoImage: hanleyLogo,
       url: "https://hanleytechnologies.com",
       description: "Trusted Technology Partner"
     },
     {
       name: "Hanley Technologies",
       logo: "HT",
+      logoImage: hanleyLogo,
       url: "https://hanleytechnologies.com",
       description: "Trusted Technology Partner"
     },
     {
       name: "Hanley Technologies",
       logo: "HT",
+      logoImage: hanleyLogo,
       url: "https://hanleytechnologies.com",
       description: "Trusted Technology Partner"
     },
@@ -110,27 +114,35 @@ const Partners = () => {
             <div className="marquee" ref={marqueeRef}>
               {/* Exclude Hanley Technologies from marquee since it's featured above */}
               {partners.slice(1).map((partner, index) => (
-                <div className="sponsor-item" key={`${partner.name}-${index}`}>
+                <a href={partner.url} target="_blank" rel="noopener noreferrer" className="sponsor-item" key={`${partner.name}-${index}`}>
                   <div className="sponsor-logo">
-                    <span>{partner.logo}</span>
+                    {partner.logoImage ? (
+                      <img src={partner.logoImage} alt={`${partner.name} Logo`} className="sponsor-logo-image" />
+                    ) : (
+                      <span>{partner.logo}</span>
+                    )}
                   </div>
                   <div className="sponsor-info">
                     <h4>{partner.name}</h4>
                     <p>{partner.description}</p>
                   </div>
-                </div>
+                </a>
               ))}
               {/* Duplicate for seamless loop */}
               {partners.slice(1).map((partner, index) => (
-                <div className="sponsor-item" key={`${partner.name}-dup-${index}`}>
+                <a href={partner.url} target="_blank" rel="noopener noreferrer" className="sponsor-item" key={`${partner.name}-dup-${index}`}>
                   <div className="sponsor-logo">
-                    <span>{partner.logo}</span>
+                    {partner.logoImage ? (
+                      <img src={partner.logoImage} alt={`${partner.name} Logo`} className="sponsor-logo-image" />
+                    ) : (
+                      <span>{partner.logo}</span>
+                    )}
                   </div>
                   <div className="sponsor-info">
                     <h4>{partner.name}</h4>
                     <p>{partner.description}</p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import API_BASE_URL from "../../../config/api"
+import Breadcrumbs from "../../ui/Breadcrumbs/Breadcrumbs"
 import "./Careers.css"
 
 const Careers = () => {
@@ -221,6 +222,7 @@ const Careers = () => {
   return (
     <div className="careers-page">
       <div className="careers-container">
+        <Breadcrumbs items={[{ label: "Home", path: "/" }, { label: "Careers" }]} />
         {/* Header Section */}
         <div className="careers-header">
           <h1>Join Spana as a Service Provider</h1>

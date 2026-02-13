@@ -1,6 +1,15 @@
 import "./ProviderCard.css"
 
 const ProviderCard = ({ provider }) => {
+  // Backend returns nested serviceProvider; support both structures
+  const sp = provider?.serviceProvider || {}
+  const rating = provider?.rating ?? sp?.rating
+  const skills = provider?.skills ?? sp?.skills ?? []
+  const isVerified = provider?.isVerified ?? sp?.isVerified
+  const isOnline = provider?.isOnline ?? sp?.isOnline
+  const totalReviews = provider?.totalReviews ?? sp?.totalReviews
+  const experienceYears = provider?.experienceYears ?? sp?.experienceYears
+
   const handleViewInApp = () => {
     // Deep link to app - adjust scheme based on your app
     const appScheme = `spana://provider/${provider._id || provider.id}`
@@ -24,12 +33,12 @@ const ProviderCard = ({ provider }) => {
               {provider.firstName?.[0]}{provider.lastName?.[0]}
             </div>
           )}
-          {provider.isVerified && (
+          {isVerified && (
             <div className="verified-badge">✓</div>
           )}
         </div>
         <div className="provider-status">
-          {provider.isOnline && (
+          {isOnline && (
             <span className="online-indicator">Online</span>
           )}
         </div>
@@ -38,12 +47,12 @@ const ProviderCard = ({ provider }) => {
       <div className="provider-content">
         <h3>{provider.firstName} {provider.lastName}</h3>
         
-        {provider.rating && (
+        {rating != null && rating > 0 && (
           <div className="provider-rating">
             <span className="stars">⭐⭐⭐⭐⭐</span>
-            <span className="rating-value">{provider.rating.toFixed(1)}</span>
-            {provider.totalReviews && (
-              <span className="review-count">({provider.totalReviews} reviews)</span>
+            <span className="rating-value">{Number(rating).toFixed(1)}</span>
+            {totalReviews != null && totalReviews > 0 && (
+              <span className="review-count">({totalReviews} reviews)</span>
             )}
           </div>
         )}
@@ -58,28 +67,28 @@ const ProviderCard = ({ provider }) => {
           </div>
         )}
 
-        {provider.skills && provider.skills.length > 0 && (
+        {skills && skills.length > 0 && (
           <div className="provider-skills">
-            {provider.skills.slice(0, 3).map((skill, index) => (
+            {skills.slice(0, 3).map((skill, index) => (
               <span key={index} className="skill-tag">{skill}</span>
             ))}
-            {provider.skills.length > 3 && (
-              <span className="skill-more">+{provider.skills.length - 3} more</span>
+            {skills.length > 3 && (
+              <span className="skill-more">+{skills.length - 3} more</span>
             )}
           </div>
         )}
 
-        {provider.experienceYears && (
+        {experienceYears != null && experienceYears > 0 && (
           <div className="provider-experience">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
               <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
-            <span>{provider.experienceYears} years experience</span>
+            <span>{experienceYears} years experience</span>
           </div>
         )}
 
-        {provider.isProfileComplete && (
+        {(provider?.isProfileComplete ?? sp?.isProfileComplete) && (
           <div className="profile-complete-badge">Complete Profile</div>
         )}
       </div>

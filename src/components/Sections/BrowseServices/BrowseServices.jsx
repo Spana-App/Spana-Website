@@ -1,41 +1,15 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
+import { Link, useSearchParams } from "react-router-dom"
 import API_BASE_URL from "../../../config/api"
+import Breadcrumbs from "../../ui/Breadcrumbs/Breadcrumbs"
 import ServiceCard from "../../ui/ServiceCard/ServiceCard"
 import "./BrowseServices.css"
 
-const MOCK_SERVICES = [
-  {
-    id: "Cleaning",
-    title: "Standard Home Cleaning",
-    description: "Example cleaning service to show how Spana can help with once-off or regular house cleaning jobs.",
-    price: null,
-    duration: 90,
-    status: "active",
-    adminApproved: true,
-  },
-  {
-    id: "Plumbing",
-    title: "Emergency Leak Fix",
-    description: "Example plumbing service for burst pipes, leaks and other urgent water issues around the home.",
-    price: null,
-    duration: 60,
-    status: "active",
-    adminApproved: true,
-  },
-  {
-    id: "Electrician",
-    title: "Faulty Plug & Lights Check",
-    description: "Example electrical service for tripping plugs, faulty lights and small electrical faults.",
-    price: null,
-    duration: 60,
-    status: "active",
-    adminApproved: true,
-  },
-]
-
 const BrowseServices = () => {
+  const [searchParams] = useSearchParams()
+  const categoryFromUrl = searchParams.get("category") || ""
   const [services, setServices] = useState([])
   const [filteredServices, setFilteredServices] = useState([])
   const [loading, setLoading] = useState(true)
@@ -43,24 +17,26 @@ const BrowseServices = () => {
   const [error, setError] = useState(null)
   const headingRef = useRef(null)
 
-  // Fetch services from API
+  // Fetch services from API (with optional category filter)
   useEffect(() => {
     const fetchServices = async () => {
       try {
         setLoading(true)
         setError(null)
 
-        const response = await fetch(`${API_BASE_URL}/services`)
+        let url = `${API_BASE_URL}/services`
+        if (categoryFromUrl) {
+          url += `?category=${encodeURIComponent(categoryFromUrl)}`
+        }
+        const response = await fetch(url)
         if (!response.ok) throw new Error('Failed to fetch services')
         const data = await response.json()
 
         // Backend may return either an array or { services: [...] }
         const serviceList = Array.isArray(data) ? data : (data.services || [])
 
-        const combined = [...MOCK_SERVICES, ...(serviceList || [])]
-
-        setServices(combined)
-        setFilteredServices(combined)
+        setServices(serviceList || [])
+        setFilteredServices(serviceList || [])
       } catch (err) {
         console.error('Error fetching services:', err)
         setError(err.message)
@@ -72,7 +48,7 @@ const BrowseServices = () => {
     }
 
     fetchServices()
-  }, [])
+  }, [categoryFromUrl])
 
   // Client-side search filter
   useEffect(() => {
@@ -119,6 +95,7 @@ const BrowseServices = () => {
       </div>
 
       <div className="browse-services-wrapper">
+        <Breadcrumbs items={[{ label: "Home", path: "/" }, { label: "Browse Services" }]} />
         <div className="browse-header" ref={headingRef}>
           <h1>
             Browse <span className="highlight">Services</span>
@@ -165,6 +142,13 @@ const BrowseServices = () => {
               <>
                 Showing <strong>{filteredServices.length}</strong> service{filteredServices.length !== 1 ? 's' : ''}
                 {searchQuery && ` for "${searchQuery}"`}
+                {categoryFromUrl && !searchQuery && (
+                  <>
+                    {" "}in <strong>{categoryFromUrl.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}</strong>
+                    {" "}
+                    <Link to="/browse-services" className="clear-category-link">(clear)</Link>
+                  </>
+                )}
               </>
             )}
           </p>

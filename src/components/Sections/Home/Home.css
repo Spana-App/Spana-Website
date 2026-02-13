@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 10% 10px;
+  padding: 40px 10% 60px;
   overflow: visible;
   background-color: var(--Background);
   position: relative;
@@ -191,6 +191,8 @@
   transition: all var(--transition-speed);
   border: 2px solid var(--Text);
   min-width: 180px;
+  cursor: pointer;
+  font: inherit;
 }
 
 .download-button:hover {
@@ -315,9 +317,6 @@
   clip-path: polygon(0% 15%, 15% 0%, 100% 10%, 100% 85%, 85% 100%, 0% 90%);
 }
 
-.service-provider-placeholder {
-  background-image: var(--accent-gradient);
-}
 
 .service-provider-image:hover {
   transform: scale(1.02);
@@ -385,7 +384,7 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .home-container {
-    padding: 80px 5% 10px;
+    padding: 40px 5% 40px;
   }
 
   .content-wrapper {
@@ -429,7 +428,7 @@
 
 @media (max-width: 768px) {
   .home-container {
-    padding: 80px 5% 10px;
+    padding: 32px 5% 40px;
   }
 
   .content-text h1 {
@@ -485,14 +484,10 @@
 }
 
 @media (max-width: 480px) {
-  :root {
-    --layout-padding: 10px 5%;
-  }
-
   .home-container {
     height: auto;
     min-height: 100vh;
-    padding: 100px 5% 60px;
+    padding: 24px 16px 40px;
   }
 
   .content-text h1 {

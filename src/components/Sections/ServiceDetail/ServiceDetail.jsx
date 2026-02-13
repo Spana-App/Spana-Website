@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import API_BASE_URL from "../../../config/api"
+import Breadcrumbs from "../../ui/Breadcrumbs/Breadcrumbs"
 import "./ServiceDetail.css"
 
 const ServiceDetail = () => {
@@ -14,65 +15,6 @@ const ServiceDetail = () => {
   const detailRef = useRef(null)
 
   useEffect(() => {
-    const mockServices = {
-      "mock-cleaning": {
-        id: "mock-cleaning",
-        title: "Standard Home Cleaning",
-        description:
-          "This is example content for a standard home cleaning service. In the live app this would show details from the real service record stored in Spana.",
-        price: null,
-        duration: 90,
-        status: "active",
-        adminApproved: true,
-      },
-      "mock-plumbing": {
-        id: "mock-plumbing",
-        title: "Emergency Leak Fix",
-        description:
-          "Example description for an emergency plumbing service. In the live app you would see more detail about what is included and any call-out information.",
-        price: null,
-        duration: 60,
-        status: "active",
-        adminApproved: true,
-      },
-      "mock-electrician": {
-        id: "mock-electrician",
-        title: "Faulty Plug & Lights Check",
-        description:
-          "Example description for a small electrical fault-finding service. In production this would be populated from the backend.",
-        price: null,
-        duration: 60,
-        status: "active",
-        adminApproved: true,
-      },
-    }
-
-    const createGenericMock = (serviceId) => {
-      const prettyTitle = (serviceId || "Service")
-        .toString()
-        .replace(/[-_]/g, " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase())
-
-      return {
-        id: serviceId,
-        title: prettyTitle,
-        description:
-          "This is example content for this type of service. In the live app this page would show full details loaded from Spana.",
-        price: null,
-        duration: 60,
-        status: "active",
-        adminApproved: true,
-      }
-    }
-
-    // If this is one of the predefined mock services, use local data instead of calling the API
-    if (id && mockServices[id]) {
-      setService(mockServices[id])
-      setError(null)
-      setLoading(false)
-      return
-    }
-
     const fetchService = async () => {
       try {
         setLoading(true)
@@ -85,10 +27,8 @@ const ServiceDetail = () => {
         setService(data)
       } catch (err) {
         console.error("Error fetching service:", err)
-        // Fallback to a generic mock service instead of showing a hard error
-        const fallback = createGenericMock(id)
-        setService(fallback)
-        setError(null)
+        setService(null)
+        setError(err.message || "Service not found")
       } finally {
         setLoading(false)
       }
@@ -163,9 +103,13 @@ const ServiceDetail = () => {
       </div>
 
       <div className="service-detail-wrapper" ref={detailRef}>
-        <br />
-        <br />
-        <br />
+        <Breadcrumbs
+          items={[
+            { label: "Home", path: "/" },
+            { label: "Browse Services", path: "/browse-services" },
+            { label: service?.title || "Service" },
+          ]}
+        />
         {/* <button onClick={() => navigate('/browse-services')} className="btn-back-top">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <polyline points="15 18 9 12 15 6"></polyline>

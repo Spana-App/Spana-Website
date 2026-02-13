@@ -94,6 +94,8 @@
   min-width: 210px;
   box-shadow: 0 4px 12px rgba(44, 75, 95, 0.08);
   transition: all var(--transition-speed);
+  cursor: pointer;
+  font: inherit;
 }
 
 .store-button.ios {

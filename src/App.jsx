@@ -13,6 +13,9 @@ import Providers from './components/Sections/Providers/Providers'
 import ServiceDetail from './components/Sections/ServiceDetail/ServiceDetail'
 import DownloadApp from './components/Sections/DownloadApp/DownloadApp'
 import Careers from './components/Sections/Careers/Careers'
+import PrivacyPolicy from './components/Sections/PrivacyPolicy/PrivacyPolicy'
+import TermsOfService from './components/Sections/TermsOfService/TermsOfService'
+import Sitemap from './components/Sections/Sitemap/Sitemap'
 import { ArrowUp } from 'lucide-react'
 
 // CUSTOM HOOK FOR SCROLL REVEAL ANIMATION EFFECT
@@ -72,11 +75,22 @@ const ScrollReveal = ({ children, delay = 0, duration = 0.6, distance = '80px' }
 
 // Scroll to top component for route changes - must be inside Router
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      const id = hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        const navbarHeight = 80;
+        const rect = el.getBoundingClientRect();
+        const offsetTop = rect.top + window.pageYOffset - navbarHeight;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
 };
@@ -196,6 +210,11 @@ const AppContent = () => {
 
           {/* Careers / Application Page */}
           <Route path="/careers" element={<Careers />} />
+
+          {/* Legal & Info Pages */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
       </main>
 

@@ -1,7 +1,17 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import "./Home.css"
+import ComingSoonModal from "../../ui/ComingSoonModal/ComingSoonModal"
+
+const HOME_IMAGES = [
+  "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80", // plumber
+  "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80", // electrician
+  "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80", // gardener
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",    // cleaner
+]
 
 const Home = () => {
+  const [heroImage] = useState(() => HOME_IMAGES[Math.floor(Math.random() * HOME_IMAGES.length)])
+  const [showComingSoon, setShowComingSoon] = useState(false)
   const headingRef = useRef(null)
   const paragraphRef = useRef(null)
   const ctaRef = useRef(null)
@@ -53,11 +63,10 @@ const Home = () => {
             </p>
 
             <div className="cta-wrapper" ref={ctaRef}>
-              <a 
-                href="#" 
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(true)}
                 className="download-button app-store"
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label="Download on App Store"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -67,13 +76,12 @@ const Home = () => {
                   <span className="download-label">Download on the</span>
                   <span className="download-store">App Store</span>
                 </div>
-              </a>
+              </button>
 
-              <a 
-                href="#" 
+              <button
+                type="button"
+                onClick={() => setShowComingSoon(true)}
                 className="download-button play-store"
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label="Get it on Google Play"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -83,7 +91,7 @@ const Home = () => {
                   <span className="download-label">Get it on</span>
                   <span className="download-store">Google Play</span>
                 </div>
-              </a>
+              </button>
             </div>
 
             <div className="features-section" ref={featuresRef}>
@@ -161,7 +169,10 @@ const Home = () => {
         </div>
 
         <div className="image-container" ref={imageRef}>
-          <div className="service-provider-image service-provider-placeholder">
+          <div 
+            className="service-provider-image"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          >
             <div className="image-overlay"></div>
             <div className="profession-badge">
               <span>Service Provider</span>
@@ -171,6 +182,7 @@ const Home = () => {
           <div className="image-accent-2"></div>
         </div>
       </div>
+      <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} />
     </div>
   )
 }

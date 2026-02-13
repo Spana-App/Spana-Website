@@ -1,12 +1,16 @@
 .careers-page {
   min-height: 100vh;
-  padding: 120px 20px 80px;
+  padding: 40px 20px 80px;
   background: linear-gradient(135deg, #f3f8f5 0%, #e8f0eb 100%);
 }
 
 .careers-container {
   max-width: 900px;
   margin: 0 auto;
+}
+
+.careers-container .breadcrumbs {
+  margin-bottom: 24px;
 }
 
 .careers-header {
@@ -359,7 +363,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .careers-page {
-    padding: 100px 15px 60px;
+    padding: 32px 16px 60px;
   }
 
   .careers-header h1 {
