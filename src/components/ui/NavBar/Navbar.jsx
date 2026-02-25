@@ -347,7 +347,7 @@ const Navbar = () => {
 
             <li className={`navbar-link ${activeLink === "Careers" ? "active" : ""}`}>
               <Link to="/careers" onClick={() => closeMenu("Careers")}>
-                <span className="link-text">Careers</span>
+                <span className="link-text">Become A Service Provider</span>
               </Link>
             </li>
 

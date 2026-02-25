@@ -211,7 +211,7 @@ const About = () => {
         </div>
 
         {/* Team Section */}
-        <div className="team-section" ref={teamSectionRef}>
+        {/* <div className="team-section" ref={teamSectionRef}>
           <div className="team-header">
             <h2>
               Meet Our <span className="highlight">Team</span>
@@ -268,7 +268,7 @@ const About = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
